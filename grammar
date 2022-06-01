@@ -1,0 +1,10 @@
+grammar porcewood
+
+program : statement+\n
+statement : let
+
+let : VAR '=' INT
+
+VAR : [a-z]+
+INT : [0–9]+
+WS : [ \t]+ -> skip 
