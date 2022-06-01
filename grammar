@@ -3,7 +3,7 @@ grammar porcewood
 program : statement+\n
 statement : let
 
-let : VAR '=' INT
+let : VAR1 '=' INT | VAR2
 
 VAR : [a-z]+
 INT : [0–9]+
