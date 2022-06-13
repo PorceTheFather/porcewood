@@ -1,15 +1,9 @@
-public enum Tokentype {
-  LET,
-
-  NUMBER,
-  VARIABLE
-}
 
 /* https://github.com/arjunsk/codekrypt-compiler/blob/master/compiler-examples/ck-compiler/src/main/java/com/arjunsk/compiler/ck/domain/token/Token.java */
 
 public class Token {
 
-  private final Tokentype type;
+  private final TokenType type;
 
   private final String value;
 
