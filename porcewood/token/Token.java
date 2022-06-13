@@ -1,3 +1,4 @@
+package porcewood.token;
 
 /* https://github.com/arjunsk/codekrypt-compiler/blob/master/compiler-examples/ck-compiler/src/main/java/com/arjunsk/compiler/ck/domain/token/Token.java */
 

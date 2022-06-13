@@ -1,3 +1,5 @@
+package porcewood.token;
+
 public enum TokenType {
   LET,
 
