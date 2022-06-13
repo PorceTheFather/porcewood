@@ -2,9 +2,10 @@ package porcewood.token;
 
 public enum TokenType {
   LET,
+  EQ,
 
-  NUMBER,
-  VARIABLE,
+  INT,
+  VAR,
   NOP
 }
 
