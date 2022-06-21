@@ -1,3 +1,14 @@
-This is a project to build the programming language "porcewood" in computer science class. 
-The goal of porcewood is to not be a object oriented programming language, porcewoods goal is to be real badass (functional). 
-The development will end on the 06/29 and it certanly wont be a totally functional programming language in the end.
+A compiler of a simple language
+
+## Steps:
+- 1. write a lexer (done)
+- 2. write a parser (in process)
+- 3. convert Abstrac syntax tree (ast) into LLVM IR
+- 4. compile LLVM IR to native with LLVM
+
+
+## to compile the project (depends on maven):
+
+```bash
+  mvn clean package
+```
