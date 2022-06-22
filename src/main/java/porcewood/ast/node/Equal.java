@@ -1,13 +1,11 @@
 package porcewood.ast.node;
 
-
 import org.antlr.v4.runtime.tree.TerminalNode;
-
 
 import porcewood.porcewoodParser.EqualContext;
 import porcewood.porcewoodParser.ExpressionContext;
 
-public class Equal implements Statement{
+public class Equal implements Statement {
 
   public Expression left;
 
@@ -31,8 +29,7 @@ public class Equal implements Statement{
     } else if(expvar != null){
       return new Var(expvar);
     } else {
-      System.exit(1);
-      return null;
+      throw new Error("weird let assignment ");
     }
     
   }
