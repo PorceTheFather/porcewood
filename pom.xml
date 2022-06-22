@@ -3,7 +3,7 @@
 
   <groupId>porcewood</groupId>
   <artifactId>porcewood</artifactId>
-  <version>0.0.1</version>
+  <version>0.0.2</version>
   <description>porcewood compiler</description>
 
   <name>porcewood</name>
@@ -21,6 +21,17 @@
       <artifactId>antlr4-runtime</artifactId>
       <version>4.10.1</version>
     </dependency>
+    <dependency>
+    <groupId>org.graalvm.truffle</groupId>
+    <artifactId>truffle-api</artifactId>
+    <version>22.1.0.1</version>
+  </dependency>
+  <dependency>
+    <groupId>org.graalvm.truffle</groupId>
+    <artifactId>truffle-dsl-processor</artifactId>
+    <version>22.1.0.1</version>
+    <scope>provided</scope>
+</dependency>
   </dependencies>
 
   <build>
