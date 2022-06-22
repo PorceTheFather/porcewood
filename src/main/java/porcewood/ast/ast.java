@@ -18,6 +18,13 @@ public class ast {
 
     this.file = new porcewoodFile();
 
+    new validate(this);
+
+    cleanupredund();
+
+    rmintermidiatevars();
+
+
   }
 
   public ast(porcewoodFile pwf) {
@@ -101,8 +108,5 @@ public class ast {
 
   }
 
-  public void checkforundeclared() {
-    
-  }
 
 }
