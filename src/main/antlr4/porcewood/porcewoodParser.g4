@@ -10,4 +10,6 @@ statement     : letAssignment ;
 
 letAssignment : LET equal ;
 
-equal         : VAR EQ (VAR | INT) ;
+equal         : VAR EQ expression ;
+
+expression    : VAR | INT ;

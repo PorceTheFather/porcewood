@@ -1,6 +1,6 @@
 package porcewood.ast.node;
 
 
-public interface Type extends Node {
+public class Type implements Node {
 
 }
