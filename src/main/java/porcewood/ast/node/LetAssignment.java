@@ -13,5 +13,9 @@ public class LetAssignment implements Statement {
   public LetAssignment(LetAssignmentContext letasscont) {
     this.equal = new Equal(letasscont.equal());
   }
+
+  public String toString() {
+    return "let " + equal.toString();
+  }
   
 }

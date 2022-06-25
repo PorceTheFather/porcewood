@@ -29,9 +29,9 @@ public class validate {
 
         LetAssignment let = (LetAssignment) stat;
         if(let.equal.right.getClass() == Var.class) {
-          if(searchfirst(((Var)let.equal.right)) == -1) {
+          if(!declaredbefore(((Var)let.equal.right))) {
 
-            throw new Error("var not declared");
+            throw new Error("var not declared: " + ((Var)let.equal.right).name);
 
           }
         }
@@ -41,18 +41,19 @@ public class validate {
     
   }
 
-  private final int searchfirst(Var var) {
+  private boolean declaredbefore(Var var) {
+
+    System.out.println("Var name:" + var.name);
 
     for (int i = 0; i < statements.size(); i++) {
       LetAssignment let = (LetAssignment)statements.get(i);
-      if(var == let.equal.left){
-        return i;
+      if(var.toString().equals(let.equal.left.toString())) {
+        return true;
       }
     }
-    return -1;
+
+    return false;
 
   }
-
-
 
 }

@@ -13,5 +13,9 @@ public class IntLit implements Expression {
   public IntLit(TerminalNode termnode){
     this.val = termnode.getText();
   }
+
+  public String toString() {
+    return val;
+  }
   
 }

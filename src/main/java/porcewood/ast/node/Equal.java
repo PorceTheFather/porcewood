@@ -33,5 +33,9 @@ public class Equal implements Statement {
     }
     
   }
+
+  public String toString() {
+    return left.toString() + " = " + right.toString();
+  }
   
 }

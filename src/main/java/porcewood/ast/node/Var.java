@@ -14,4 +14,8 @@ public class Var implements Expression {
     this.name = termnode.getText();
   }
 
+  public String toString() {
+    return name;
+  }
+
 }
