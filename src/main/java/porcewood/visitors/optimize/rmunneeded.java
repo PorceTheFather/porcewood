@@ -1,7 +1,5 @@
 package porcewood.visitors.optimize;
 
-import org.antlr.v4.runtime.tree.ParseTree;
-import org.antlr.v4.runtime.tree.RuleNode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +7,6 @@ import java.util.List;
 import porcewood.porcewoodBaseVisitor;
 import porcewood.porcewoodParser.EqualContext;
 import porcewood.porcewoodParser.LetAssignmentContext;
-import porcewood.porcewoodParser.LineContext;
 import porcewood.porcewoodParser.PorcewoodFileContext;
 import porcewood.porcewoodParser.PrintstatContext;
 

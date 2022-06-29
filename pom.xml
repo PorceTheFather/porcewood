@@ -9,6 +9,12 @@
 
   <name>porcewood</name>
 
+  <repositories>
+    <repository>
+      <id>sonatype-nexus-snapshots</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </repository>
+  </repositories>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -17,16 +23,16 @@
   </properties>
 
   <dependencies>
-   <dependency>
-     <groupId>org.antlr</groupId>
+    <dependency>
+      <groupId>org.antlr</groupId>
       <artifactId>antlr4-runtime</artifactId>
       <version>4.10.1</version>
     </dependency>
     <dependency>
       <groupId>org.bytedeco</groupId>
-         <artifactId>llvm-platform</artifactId>
-         <version>13.0.1-1.5.7</version>
-      </dependency>
+      <artifactId>llvm-platform</artifactId>
+      <version>14.0.5-1.5.8-SNAPSHOT</version>
+    </dependency>
   </dependencies>
 
   <build>
@@ -40,6 +46,9 @@
             <goals>
               <goal>antlr4</goal>
             </goals>
+            <configuration>
+              <visitor>true</visitor>
+            </configuration>
           </execution>
         </executions>
       </plugin>
