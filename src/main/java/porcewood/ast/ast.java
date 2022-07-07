@@ -102,12 +102,22 @@ public class ast {
   public static interface astLeaf {
     public astNode getParent();
     public void setParent(astNode parent);
+    public int getValue();
+    public void setValue(int value);
   }
   public static class astLeafImpl implements astLeaf{
     public astNode parent;
+    public int value;
 
     public astLeafImpl(astNode parent) {
       setParent(parent);
+    }
+
+    public void setValue(int value) {
+      this.value = value;
+    }
+    public int getValue() {
+      return this.value;
     }
 
     public void setParent(astNode parent) {
@@ -160,5 +170,42 @@ public class ast {
 
   public void addPrint(PrintStatNode print) {
     this.pwf.Statements.add(print);
+  }
+
+  private void followlets() {
+    for (astNode stat : pwf.Statements) {
+      if (stat instanceof LetNode) {
+        LetNode let = (LetNode)stat;
+        let.var.setValue(let.expr.value.getValue());
+        let.var.value_resolved = true; 
+      } 
+    }
+  }
+
+  private void reNameDoubleDecaration() {
+    List<String> vars = new ArrayList<String>();
+    for (astNode stat : pwf.Statements) {
+      if (stat instanceof LetNode) {
+        vars.add(((LetNode)stat).var.name);
+      }
+    }
+    for (String name : vars) {
+      while (vars.indexOf(name) != vars.lastIndexOf(name)) {
+        vars.set(vars.lastIndexOf(name), String.valueOf(name.hashCode()));
+      }
+    }
+    int i = 0,a = 0;
+    for (astNode stat : pwf.Statements) {
+      if (stat instanceof LetNode) {
+        ((LetNode)pwf.Statements.get(i)).var.name = vars.get(a);
+        a++;
+      }
+      i++;
+    }
+  }
+
+  public void cleanup() {
+    //reNameDoubleDecaration();
+    followlets();
   }
 }

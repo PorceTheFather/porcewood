@@ -27,14 +27,7 @@
       <groupId>org.antlr</groupId>
       <artifactId>antlr4-runtime</artifactId>
       <version>4.10.1</version>
-    </dependency>
-    <dependency>
-      <groupId>org.bytedeco</groupId>
-      <artifactId>llvm-platform</artifactId>
-      <version>14.0.5-1.5.8-SNAPSHOT</version>
-    </dependency>
-  </dependencies>
-
+    </dependency> </dependencies>
   <build>
     <plugins>
       <plugin>
@@ -51,8 +44,56 @@
             </configuration>
           </execution>
         </executions>
-      </plugin>
-    </plugins>
+    </plugin>
+ <plugin>
+  <groupId>org.apache.maven.plugins</groupId>
+  <artifactId>maven-shade-plugin</artifactId>
+  <version>3.3.0</version>
+  <executions>
+    <execution>
+      <goals>
+        <goal>shade</goal>
+      </goals>
+      <configuration>
+        <shadedArtifactAttached>true</shadedArtifactAttached>
+        <transformers>
+          <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+            <mainClass>porcewood.Main</mainClass>
+          </transformer>
+        </transformers>
+      </configuration>
+    </execution>
+  </executions>
+  </plugin>
+  <!--        <plugin>
+         <groupId>org.codehaus.mojo</groupId>
+         <artifactId>native-maven-plugin</artifactId>
+         <extensions>true</extensions>
+         <configuration>
+           <linkerStartOptions>
+             <linkerStartOption>-static -lLLVM-13</linkerStartOption> 
+           </linkerStartOptions>
+           <compilerProvider>clang</compilerProvider>
+           <compilerExecutable>clang</compilerExecutable>
+           <compilerStartOptions>-lLLVM-13 -I/usr/include -std=c++14   -fno-exceptions -D_GNU_SOURCE -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS</compilerStartOptions>
+           <sources>
+             <source>
+             <directory>
+               src/main/native
+             </directory>
+             <includes>
+               <include>
+                 *.cpp
+              </include>
+              <include>
+                *.c*
+              </include>
+            </includes>
+          </source>
+          </sources>
+         </configuration>
+  </plugin> -->
+</plugins>
   </build>
 
 </project>
