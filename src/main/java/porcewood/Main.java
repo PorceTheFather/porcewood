@@ -25,7 +25,6 @@ public class Main {
     pwf.accept(new validate());
     System.out.println(pwf.toStringTree(parser));
     ast ast = GenAst.AstFromPorcewoodFileContext(pwf);
-    ast.cleanup();
     new compile(ast, a);
   }
 }

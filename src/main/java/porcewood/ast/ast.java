@@ -10,9 +10,11 @@ import porcewood.porcewoodParser.PrintstatContext;
 public class ast {
 
   public PorcewoodFileNode pwf;
+  private List<VarLeaf> vars;
 
   public ast() {
     this.pwf = new PorcewoodFileNode();
+    this.vars = new ArrayList<VarLeaf>();
   }
   
   public static interface astNode {
@@ -82,6 +84,7 @@ public class ast {
       super(parent);
       this.printexpr = new ExprNode(this, printcon.expression());
     }
+
   }
   public static class ExprNode extends astNodeImpl {
     public astLeaf value;
@@ -97,6 +100,10 @@ public class ast {
       } else {
         this.value = new VarLeaf(this, expr.VAR().getText());
       }
+    }
+
+    public void setValue(astLeaf value) {
+      this.value = value;
     }
   }
   public static interface astLeaf {
@@ -173,13 +180,44 @@ public class ast {
   }
 
   private void followlets() {
+    resVars();
     for (astNode stat : pwf.Statements) {
       if (stat instanceof LetNode) {
         LetNode let = (LetNode)stat;
+        System.out.println(let.expr.value);
         let.var.setValue(let.expr.value.getValue());
+        System.out.println(let.var);
         let.var.value_resolved = true; 
       } 
     }
+  }
+
+  private void resVars() {
+    for (astNode stat : pwf.Statements) {
+      if (stat instanceof LetNode) {
+        LetNode let = (LetNode)stat;
+        for (VarLeaf varLeaf : vars) {
+          if( varLeaf.name.equals(let.var.name) ) {
+            let.setVar(varLeaf);
+            break;
+          }
+        }
+        vars.add(let.var);
+      } else {
+        PrintStatNode print = (PrintStatNode)stat;
+        if(print.printexpr.value instanceof VarLeaf){
+          for (VarLeaf varLeaf : vars) {
+            VarLeaf var = (VarLeaf)print.printexpr.value;
+            if (var.name.equals(varLeaf.name)) {
+              print.printexpr.setValue(varLeaf);
+              break;
+            }
+          }
+          vars.add((VarLeaf)print.printexpr.value);
+        }
+      }
+    }
+
   }
 
   private void reNameDoubleDecaration() {
